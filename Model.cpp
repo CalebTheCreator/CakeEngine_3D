@@ -16,3 +16,12 @@ Model::~Model()
 {
 	WfModelDestroy(&ModelInUse);
 }
+
+void Model::Draw()
+{
+
+	glBindVertexArray(GetVAOId());
+	glBindTexture(GL_TEXTURE_2D, GetTextureId());
+
+	glDrawArrays(GL_TRIANGLES, 0, GetVertexCount());
+}

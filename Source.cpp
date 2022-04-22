@@ -19,7 +19,9 @@ int main(int argc, char* argv[])
 	Window window;
 	//Shader shader = Shader(ShaderType::Diffuse);
 	Shader shader;
-	Model model("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	Model mike1("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	Model mike2("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	Model mike3("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
 
 	GLint projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	GLint modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
@@ -56,12 +58,18 @@ int main(int argc, char* argv[])
 			glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -4.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f))));
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
 
-		angle += 0.1f;
+		angle++;
 
-		glBindVertexArray(model.GetVAOId());
-		glBindTexture(GL_TEXTURE_2D, model.GetTextureId());
+		mike1.Draw();
 
-		glDrawArrays(GL_TRIANGLES, 0, model.GetVertexCount());
+		mike2.Draw();
+
+		mike3.Draw();
+
+		//glBindVertexArray(mike1.GetVAOId());
+		//glBindTexture(GL_TEXTURE_2D, mike1.GetTextureId());
+
+		//glDrawArrays(GL_TRIANGLES, 0, mike1.GetVertexCount());
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glBindVertexArray(0);

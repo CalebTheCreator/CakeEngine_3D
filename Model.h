@@ -7,6 +7,7 @@ struct Model
 	Model(){}
 	Model(const char* mSrc);
 	~Model();
+	void Draw();
 	WfModel GetModelInUse() { return ModelInUse; }
 	GLuint GetVAOId() { return ModelInUse.vaoId; }
 	GLuint GetTextureId() { return ModelInUse.textureId; }
