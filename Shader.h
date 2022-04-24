@@ -6,6 +6,7 @@ struct Shader
 {
 	Shader();
 	Shader(ShaderType sT);
+	Shader(ShaderType sT, struct GameObject g);
 	~Shader();
 	void CreateVertexShader();
 	void CreateFragmentShader();
