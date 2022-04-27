@@ -1,14 +1,20 @@
 #pragma once
+#include <glm/glm.hpp>
+#include <SDL2/SDL.h>
 #include <GL/glew.h>
+#include <string>
 
-struct Mesh
+class Mesh
 {
-	Mesh(int type);
-	GLuint GetId();
-	int GetVertexCount();
+public:
+	Mesh();
+	~Mesh();
+	void LoadOBJ(std::string filename);
+	void Draw();
 
-private:
-	GLuint m_vaoId;
-	GLuint m_posVboId;
+protected:
+	GLuint VertexArrayObject;
+	unsigned int numVertices;
+
 };
 

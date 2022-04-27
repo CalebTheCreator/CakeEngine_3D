@@ -4,6 +4,7 @@
 #include <vector>
 #include "GameObject.h"
 #include <string>
+#include "Window.h"
 
 /*std::string load_file(const std::string& _path)
 {
@@ -466,4 +467,30 @@ void Shader::CreateProgramId()
 	glDeleteShader(vertexShaderId);
 	glDetachShader(programId, fragmentShaderId);
 	glDeleteShader(fragmentShaderId);
+}
+
+void Shader::Clear(GLint &pLoc, GLint &mLoc, Window &w, float &angle)
+{
+	glClearColor(0.39f, 0.58f, 0.93f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glEnable(GL_DEPTH_TEST);
+	glUseProgram(GetProgramId());
+
+	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(glm::perspective(
+		glm::radians(45.0f), (float)w.GetWindowHeight() / (float)w.GetWindowHeight(), 0.1f, 100.0f)));
+
+	glUniformMatrix4fv(mLoc, 1, GL_FALSE, glm::value_ptr(glm::rotate(
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -4.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f))));
+
+	angle += 1.0f;
+}
+
+void Shader::Draw()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
+	glUseProgram(0);
+
+	glDisable(GL_DEPTH_TEST);
 }

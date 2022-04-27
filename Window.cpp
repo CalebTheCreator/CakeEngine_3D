@@ -6,8 +6,8 @@
 #include <glm/ext.hpp>
 
 #include "Model.h"
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 700
 
 Window::Window()
 {
