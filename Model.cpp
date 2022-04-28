@@ -25,3 +25,11 @@ void Model::Draw()
 
 	glDrawArrays(GL_TRIANGLES, 0, GetVertexCount());
 }
+
+void Model::SetModelSrc(const char* mSrc)
+{
+	if (WfModelLoad(mSrc, &ModelInUse) != 0)
+	{
+		throw std::runtime_error("Failed to load model");
+	}
+}

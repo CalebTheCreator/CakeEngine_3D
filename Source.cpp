@@ -1,10 +1,12 @@
-#include "Application.h"
-#include <memory>
+#include "Game.h"
 
 int main(int argc, char* argv[])
 {
-	Application game;
-	game.Run();
+	Game* game = new Game();
 
+	game->Run();
+
+	delete game;
+	
 	return 0;
 }

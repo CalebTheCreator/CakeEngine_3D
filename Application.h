@@ -6,20 +6,33 @@
 
 #include "Window.h"
 #include "Shader.h"
-#include "Model.h"
+#include "GameObject.h"
+#include "InputManager.h"
+
+#include <memory>
 
 struct Application
 {
 	Application();
+
 	~Application();
-	void Run();
+
+	void Tick();
+
+	void Draw();
 
 private:
 	Window window;
 	Shader shader;
-	Model model;
+	GameObject* gMike;
+	GameObject* platform;
 	GLint projectionLoc;
 	GLint modelLoc;
 	float angle;
-	bool quit = false;
+	bool quit;
+	float xPos1;
+	float xPos2;
+	InputManager* mInputManager;
+	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
+	glm::vec3 initialMikePosition = glm::vec3(0, -1.5, -10);
 };

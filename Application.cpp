@@ -3,32 +3,42 @@
 Application::Application()
 {
 	shader = Shader(ShaderType::Specular);
-	model = Model("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	gMike = new GameObject("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	platform = new GameObject("models/Platform.obj");
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
 	angle = 0;
+	quit = false;
+	xPos1 = -2;
+	xPos2 = 2;
+
+	platform->SetPosition(initialFloorPosition);
+	gMike->SetPosition(initialMikePosition);
 }
 
 Application::~Application()
 {
-	
+	delete gMike;
+	delete platform;
 }
 
-void Application::Run()
+void Application::Tick()
 {
-	while (quit == false)
+	platform->MoveRight(0.003f);
+	if (platform->GetPosition().x >= 20)
 	{
-		SDL_Event evt;
-		while (SDL_PollEvent(&evt))
-		{
-			if (evt.type == SDL_QUIT)
-			{
-				quit = true;
-			}
-		}
-		shader.Clear(projectionLoc, modelLoc, window, angle);
-		model.Draw();
-		shader.Draw();
-		window.Swap();
+		platform->SetPosition(initialFloorPosition);
 	}
+
+}
+
+
+void Application::Draw()
+{
+	shader.Clear(projectionLoc, modelLoc, window, angle);
+	gMike->Draw(shader);
+	platform->Draw(shader);
+
+	shader.Draw();
+	window.Swap();
 }

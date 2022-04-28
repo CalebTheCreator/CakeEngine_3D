@@ -480,10 +480,10 @@ void Shader::Clear(GLint &pLoc, GLint &mLoc, Window &w, float &angle)
 	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(glm::perspective(
 		glm::radians(45.0f), (float)w.GetWindowHeight() / (float)w.GetWindowHeight(), 0.1f, 100.0f)));
 
-	glUniformMatrix4fv(mLoc, 1, GL_FALSE, glm::value_ptr(glm::rotate(
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -4.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f))));
+	//glUniformMatrix4fv(mLoc, 1, GL_FALSE, glm::value_ptr(glm::rotate(
+	//	glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -4.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f))));
 
-	angle += 1.0f;
+	//angle += 0.1f;
 }
 
 void Shader::Draw()
