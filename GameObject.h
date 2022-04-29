@@ -17,8 +17,6 @@ public:
 	GameObject(const char* modelSrc);
 	~GameObject();
 	void Draw(Shader& _shader);
-	void Begin();
-	void Tick();
 	void SetPosition(glm::vec3 p) { Position = p; }
 	glm::vec3 GetPosition() { return Position; }
 	WfModel GetModel() { return model->GetModelInUse(); }

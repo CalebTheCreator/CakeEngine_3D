@@ -10,6 +10,7 @@
 #include "InputManager.h"
 
 #include <memory>
+#include <vector>
 
 struct Application
 {
@@ -35,4 +36,5 @@ private:
 	InputManager* mInputManager;
 	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
 	glm::vec3 initialMikePosition = glm::vec3(0, -1.5, -10);
+	//std::vector <GameObject*> platforms;
 };

@@ -11,7 +11,7 @@ Application::Application()
 	quit = false;
 	xPos1 = -2;
 	xPos2 = 2;
-
+	mInputManager = new InputManager();
 	platform->SetPosition(initialFloorPosition);
 	gMike->SetPosition(initialMikePosition);
 }
@@ -20,14 +20,39 @@ Application::~Application()
 {
 	delete gMike;
 	delete platform;
+	delete mInputManager;
 }
 
 void Application::Tick()
 {
-	platform->MoveRight(0.003f);
-	if (platform->GetPosition().x >= 20)
+	while (mInputManager->KeyIsDown())
 	{
-		platform->SetPosition(initialFloorPosition);
+		mInputManager->Update();
+
+		if (mInputManager->GetMovement() == MovementControls::Right)
+		{
+			platform->MoveRight(0.003f);
+			if (platform->GetPosition().x >= 20)
+			{
+				platform->SetPosition(initialFloorPosition);
+			}
+		}
+		if (mInputManager->GetMovement() == MovementControls::Left)
+		{
+			platform->MoveLeft(0.003f);
+			if (platform->GetPosition().x <= -20)
+			{
+				platform->SetPosition(initialFloorPosition);
+			}
+		}
+		if (mInputManager->GetMovement() == MovementControls::Jump)
+		{
+			gMike->Jump(1.0f);
+			if (gMike->GetPosition().y <= 5)
+			{
+				gMike->SetPosition(initialMikePosition);
+			}
+		}
 	}
 
 }

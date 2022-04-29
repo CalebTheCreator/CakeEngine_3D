@@ -1,9 +1,10 @@
 #include "InputManager.h"
 #include <SDL2/SDL.h>
+#include <iostream>
 
 InputManager::InputManager()
 {
-
+	state = SDL_GetKeyboardState(NULL);
 }
 
 InputManager::~InputManager()
@@ -11,33 +12,38 @@ InputManager::~InputManager()
 
 }
 
-std::string InputManager::Update()
+void InputManager::Update()
+{
+
+	if (state[SDL_SCANCODE_A])
+	{
+		std::cout << "Left is pressed" << std::endl;
+		SetMovement(MovementControls::Left);
+	}
+	if (state[SDL_SCANCODE_D])
+	{
+		std::cout << "Right is pressed" << std::endl;
+		SetMovement(MovementControls::Right);
+	}
+	if (state[SDL_SCANCODE_SPACE])
+	{
+		std::cout << "Jump is pressed" << std::endl;
+		SetMovement(MovementControls::Jump);
+	}
+}
+
+bool InputManager::KeyIsDown()
 {
 	SDL_Event evt;
 	while (SDL_PollEvent(&evt))
 	{
-		switch (evt.type)
+		if (evt.type == SDL_KEYDOWN)
 		{
-		case SDL_KeyCode::SDLK_d:
-			return "Right";
-			break;
-
-		case SDL_KeyCode::SDLK_a:
-			return "Left";
-			break;
-
-		case SDL_KeyCode::SDLK_SPACE:
-			return "Jump";
-			break;
-
-		default:
-			break;
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }
-
-
-
-
-
-

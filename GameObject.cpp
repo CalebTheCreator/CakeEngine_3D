@@ -30,14 +30,6 @@ void GameObject::Draw(Shader& _shader)
 	model->Draw();
 }
 
-void GameObject::Begin()
-{
-}
-
-void GameObject::Tick()
-{
-}
-
 void GameObject::SetModelSrc(const char* mS)
 {
 	model = new Model(mS);
