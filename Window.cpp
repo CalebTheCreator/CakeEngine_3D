@@ -11,6 +11,7 @@
 
 Window::Window()
 {
+	
 	//create window
 	window = SDL_CreateWindow("Cake Engine 2022",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,

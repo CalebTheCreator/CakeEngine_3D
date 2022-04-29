@@ -18,7 +18,7 @@ struct Application
 
 	~Application();
 
-	void Tick();
+	void Tick(float DeltaTime);
 
 	void Draw();
 
@@ -34,7 +34,6 @@ private:
 	float xPos1;
 	float xPos2;
 	InputManager* mInputManager;
-	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
-	glm::vec3 initialMikePosition = glm::vec3(0, -1.5, -10);
-	//std::vector <GameObject*> platforms;
+	glm::vec3 initialFloorPosition = glm::vec3(0, -5, -70);
+	glm::vec3 initialMikePosition = glm::vec3(0, -1, -10);
 };

@@ -1,4 +1,6 @@
 #include "Application.h"
+#include <iostream>
+
 
 Application::Application()
 {
@@ -14,6 +16,8 @@ Application::Application()
 	mInputManager = new InputManager();
 	platform->SetPosition(initialFloorPosition);
 	gMike->SetPosition(initialMikePosition);
+
+	
 }
 
 Application::~Application()
@@ -23,36 +27,11 @@ Application::~Application()
 	delete mInputManager;
 }
 
-void Application::Tick()
+void Application::Tick(float DeltaTime)
 {
 	while (mInputManager->KeyIsDown())
 	{
-		mInputManager->Update();
-
-		if (mInputManager->GetMovement() == MovementControls::Right)
-		{
-			platform->MoveRight(0.003f);
-			if (platform->GetPosition().x >= 20)
-			{
-				platform->SetPosition(initialFloorPosition);
-			}
-		}
-		if (mInputManager->GetMovement() == MovementControls::Left)
-		{
-			platform->MoveLeft(0.003f);
-			if (platform->GetPosition().x <= -20)
-			{
-				platform->SetPosition(initialFloorPosition);
-			}
-		}
-		if (mInputManager->GetMovement() == MovementControls::Jump)
-		{
-			gMike->Jump(1.0f);
-			if (gMike->GetPosition().y <= 5)
-			{
-				gMike->SetPosition(initialMikePosition);
-			}
-		}
+		platform->MoveRight(0.001f, DeltaTime, initialFloorPosition, 15);
 	}
 
 }
