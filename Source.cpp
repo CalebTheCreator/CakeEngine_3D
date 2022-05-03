@@ -2,11 +2,11 @@
 
 int main(int argc, char* argv[])
 {
-	Game* game = new Game();
+	Game* MikesAdventure = new Game();
 
-	game->Run();
+	MikesAdventure->Run();
 
-	delete game;
+	delete MikesAdventure;
 	
 	return 0;
 }

@@ -13,7 +13,7 @@ struct Shader
 	void CreateProgramId();
 	GLuint GetProgramId() { return programId; }
 
-	void Clear(GLint &pLoc, GLint &mLoc, struct Window &w, float &angle);
+	void Prepare(GLint &pLoc, GLint &mLoc, struct Window &w, float &angle);
 	void Draw();
 private:
 	const GLchar* vertexShaderSrc;

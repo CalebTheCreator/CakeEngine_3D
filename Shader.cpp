@@ -334,10 +334,11 @@ Shader::Shader(ShaderType sT, GameObject g)
 		throw std::runtime_error("Failed to link shader program");
 	}
 
-	glDetachShader(programId, vertexShaderId);
+	/**glDetachShader(programId, vertexShaderId);
 	glDeleteShader(vertexShaderId);
 	glDetachShader(programId, fragmentShaderId);
-	glDeleteShader(fragmentShaderId);
+	glDeleteShader(fragmentShaderId);*/
+	CreateProgramId();
 }
 
 Shader::~Shader()
@@ -469,7 +470,7 @@ void Shader::CreateProgramId()
 	glDeleteShader(fragmentShaderId);
 }
 
-void Shader::Clear(GLint &pLoc, GLint &mLoc, Window &w, float &angle)
+void Shader::Prepare(GLint &pLoc, GLint &mLoc, Window &w, float &angle)
 {
 	glClearColor(0.39f, 0.58f, 0.93f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

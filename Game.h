@@ -17,4 +17,3 @@ private:
 	double DeltaTime = 0;
 	BackgroundMusic* elevatorMusic;
 };
-

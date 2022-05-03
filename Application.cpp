@@ -29,17 +29,31 @@ Application::~Application()
 
 void Application::Tick(float DeltaTime)
 {
+	mInputManager->Update();
 	while (mInputManager->KeyIsDown())
 	{
-		platform->MoveRight(0.001f, DeltaTime, initialFloorPosition, 15);
-	}
+		if (mInputManager->GetMovement() == MovementControls::Jump)
+		{
 
+			gMike->Jump(2.0f, DeltaTime, initialMikePosition, NULL);
+		}
+
+		if (mInputManager->GetMovement() == MovementControls::Left)
+		{
+			gMike->MoveLeft(1.0f, DeltaTime, initialMikePosition, -20);
+		}
+
+		if (mInputManager->GetMovement() == MovementControls::Right)
+		{
+			gMike->MoveRight(1.0f, DeltaTime, initialMikePosition, 20);
+		}
+	}
 }
 
 
 void Application::Draw()
 {
-	shader.Clear(projectionLoc, modelLoc, window, angle);
+	shader.Prepare(projectionLoc, modelLoc, window, angle);
 	gMike->Draw(shader);
 	platform->Draw(shader);
 

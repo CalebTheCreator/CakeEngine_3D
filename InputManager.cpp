@@ -14,22 +14,22 @@ InputManager::~InputManager()
 
 void InputManager::Update()
 {
-
-	if (state[SDL_SCANCODE_A])
-	{
-		std::cout << "Left is pressed" << std::endl;
-		SetMovement(MovementControls::Left);
-	}
-	if (state[SDL_SCANCODE_D])
-	{
-		std::cout << "Right is pressed" << std::endl;
-		SetMovement(MovementControls::Right);
-	}
-	if (state[SDL_SCANCODE_SPACE])
-	{
-		std::cout << "Jump is pressed" << std::endl;
-		SetMovement(MovementControls::Jump);
-	}
+	
+		if (state[SDL_SCANCODE_A])
+		{
+			std::cout << "Left is pressed" << std::endl;
+			SetMovement(MovementControls::Left);
+		}
+		if (state[SDL_SCANCODE_D])
+		{
+			std::cout << "Right is pressed" << std::endl;
+			SetMovement(MovementControls::Right);
+		}
+		if (state[SDL_SCANCODE_SPACE])
+		{
+			std::cout << "Jump is pressed" << std::endl;
+			SetMovement(MovementControls::Jump);
+		}
 }
 
 bool InputManager::KeyIsDown()

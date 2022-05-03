@@ -35,16 +35,16 @@ void GameObject::SetModelSrc(const char* mS)
 	model = new Model(mS);
 }
 
-void GameObject::MoveLeft(float x, float DeltaTime, glm::vec3 initialPosition, int restraint)
+void GameObject::MoveLeft(float x, float DeltaTime, glm::vec3& initialPosition, int restraint)
 {
-	Position.x += x * DeltaTime;
+	Position.x -= x * DeltaTime;
 	if (Position.x <= restraint)
 	{
 		SetPosition(initialPosition);
 	}
 }
 
-void GameObject::MoveRight(float x, float DeltaTime, glm::vec3 initialPosition, int restraint)
+void GameObject::MoveRight(float x, float DeltaTime, glm::vec3& initialPosition, int restraint)
 {
 	Position.x += x * DeltaTime;
 	if (Position.x >= restraint)
@@ -53,10 +53,10 @@ void GameObject::MoveRight(float x, float DeltaTime, glm::vec3 initialPosition, 
 	}
 }
 
-void GameObject::Jump(float jumpVelocity, float DeltaTime, glm::vec3 initialPosition, int restraint)
+void GameObject::Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint)
 {
 	Position.y += jumpVelocity * DeltaTime;
-	if (Position.x >= restraint)
+	if (Position.y >= restraint)
 	{
 		SetPosition(initialPosition);
 	}

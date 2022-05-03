@@ -27,9 +27,9 @@ public:
 	void SetX(float x) { Position.x = x; }
 	void SetY(float y) { Position.y = y; }
 	void SetZ(float z) { Position.z = z; }
-	void MoveLeft(float x, float DeltaTime, glm::vec3 initialPosition, int restraint);
-	void MoveRight(float x, float DeltaTime, glm::vec3 initialPosition, int restraint);
-	void Jump(float jumpVelocity, float DeltaTime, glm::vec3 initialPosition, int restraint);
+	void MoveLeft(float x, float DeltaTime, glm::vec3& initialPosition, int restraint);
+	void MoveRight(float x, float DeltaTime, glm::vec3& initialPosition, int restraint);
+	void Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint);
 
 
 private:
