@@ -4,6 +4,7 @@
 #include "Shader.h"
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
+#include <iostream>
 
 GameObject::GameObject()
 {
@@ -14,11 +15,32 @@ GameObject::GameObject(const char* modelSrc) //:
 	//model(modelSrc)
 {
 	model = new Model(modelSrc);
+	upVelocity = 0.0f;
+
 }
 
 GameObject::~GameObject()
 {
 	
+}
+
+void GameObject::Tick(float DeltaTime, float upLimit)
+{
+	
+	Position.y += upVelocity * DeltaTime;
+	upVelocity -= 5.0f * DeltaTime;
+	if (Position.y < upLimit)
+	{
+		Position.y = upLimit;
+		upVelocity = 0.0f;
+	}
+	if (Position.y > 3)
+	{
+		Position.y -= upVelocity * DeltaTime;
+		upVelocity = 0.0f;
+	}
+	std::cout << upVelocity << std::endl;
+	//Position.x += DeltaTime;
 }
 
 void GameObject::Draw(Shader& _shader)
@@ -35,29 +57,17 @@ void GameObject::SetModelSrc(const char* mS)
 	model = new Model(mS);
 }
 
-void GameObject::MoveLeft(float x, float DeltaTime, glm::vec3& initialPosition, int restraint)
+void GameObject::MoveLeft(float DeltaTime)
 {
-	Position.x -= x * DeltaTime;
-	if (Position.x <= restraint)
-	{
-		SetPosition(initialPosition);
-	}
+	Position.x -= DeltaTime;
 }
 
-void GameObject::MoveRight(float x, float DeltaTime, glm::vec3& initialPosition, int restraint)
+void GameObject::MoveRight(float DeltaTime)
 {
-	Position.x += x * DeltaTime;
-	if (Position.x >= restraint)
-	{
-		SetPosition(initialPosition);
-	}
+	Position.x += DeltaTime;
 }
 
-void GameObject::Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint)
+void GameObject::Jump(float jumpVelocity)
 {
-	Position.y += jumpVelocity * DeltaTime;
-	if (Position.y >= restraint)
-	{
-		SetPosition(initialPosition);
-	}
+	upVelocity = jumpVelocity;
 }

@@ -4,7 +4,7 @@
 
 InputManager::InputManager()
 {
-	state = SDL_GetKeyboardState(NULL);
+	
 }
 
 InputManager::~InputManager()
@@ -14,7 +14,7 @@ InputManager::~InputManager()
 
 void InputManager::Update()
 {
-	
+	/*
 		if (state[SDL_SCANCODE_A])
 		{
 			std::cout << "Left is pressed" << std::endl;
@@ -30,20 +30,12 @@ void InputManager::Update()
 			std::cout << "Jump is pressed" << std::endl;
 			SetMovement(MovementControls::Jump);
 		}
+		*/
 }
 
-bool InputManager::KeyIsDown()
+bool InputManager::KeyIsDown(int key)
 {
-	SDL_Event evt;
-	while (SDL_PollEvent(&evt))
-	{
-		if (evt.type == SDL_KEYDOWN)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+	const Uint8* state = SDL_GetKeyboardState(NULL);
+
+	return state[key];
 }

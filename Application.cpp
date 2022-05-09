@@ -30,24 +30,22 @@ Application::~Application()
 void Application::Tick(float DeltaTime)
 {
 	mInputManager->Update();
-	while (mInputManager->KeyIsDown())
+	if (mInputManager->KeyIsDown(SDL_SCANCODE_SPACE))
 	{
-		if (mInputManager->GetMovement() == MovementControls::Jump)
-		{
-
-			gMike->Jump(2.0f, DeltaTime, initialMikePosition, NULL);
-		}
-
-		if (mInputManager->GetMovement() == MovementControls::Left)
-		{
-			gMike->MoveLeft(1.0f, DeltaTime, initialMikePosition, -20);
-		}
-
-		if (mInputManager->GetMovement() == MovementControls::Right)
-		{
-			gMike->MoveRight(1.0f, DeltaTime, initialMikePosition, 20);
-		}
+		gMike->Jump(5);
 	}
+
+	if (mInputManager->KeyIsDown(SDL_SCANCODE_A))
+	{
+		gMike->MoveLeft(DeltaTime);
+	}
+
+	if (mInputManager->KeyIsDown(SDL_SCANCODE_D))
+	{
+		gMike->MoveRight(DeltaTime);
+	}
+
+	gMike->Tick(DeltaTime, -1.5);
 }
 
 

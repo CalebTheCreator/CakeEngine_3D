@@ -12,10 +12,10 @@ public:
 	void Update();
 	void SetMovement(MovementControls mC) { movement = mC; }
 	MovementControls GetMovement() { return movement; }
-	bool KeyIsDown();
+	bool KeyIsDown(int key);
 
 private:
-	const Uint8* state; 
+	
 	MovementControls movement;
 };
 

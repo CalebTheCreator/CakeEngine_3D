@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
+#include <iostream>
 
 Game::Game()
 {
@@ -18,9 +19,14 @@ void Game::Run()
 
 	while (quit == false)
 	{
-		LAST = NOW;
-		NOW = SDL_GetPerformanceCounter();
+		
+		/**NOW = SDL_GetPerformanceCounter();
 		DeltaTime = (double)((NOW - LAST) * 1000 / double(SDL_GetPerformanceFrequency()));
+		LAST = NOW;*/
+		NOW = SDL_GetTicks();
+		DeltaTime = (double)(NOW - LAST) / 1000.0f;
+		LAST = NOW;
+		//std::cout << DeltaTime << std::endl;
 		SDL_Event evt;
 		while (SDL_PollEvent(&evt))
 		{

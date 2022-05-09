@@ -16,6 +16,7 @@ public:
 	GameObject();
 	GameObject(const char* modelSrc);
 	~GameObject();
+	void Tick(float DeltaTime, float upLimit);
 	void Draw(Shader& _shader);
 	void SetPosition(glm::vec3 p) { Position = p; }
 	glm::vec3 GetPosition() { return Position; }
@@ -27,13 +28,15 @@ public:
 	void SetX(float x) { Position.x = x; }
 	void SetY(float y) { Position.y = y; }
 	void SetZ(float z) { Position.z = z; }
-	void MoveLeft(float x, float DeltaTime, glm::vec3& initialPosition, int restraint);
-	void MoveRight(float x, float DeltaTime, glm::vec3& initialPosition, int restraint);
-	void Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint);
+	void MoveLeft(float DeltaTime);
+	void MoveRight(float DeltaTime);
+	//void Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint);
+	void Jump(float jumpVelocity);
 
 
 private:
 	Model* model;
 	glm::vec3 Position;
+	float upVelocity;
 };
 
