@@ -5,7 +5,7 @@
 Game::Game()
 {
 	RunningGame = new Application();
-	elevatorMusic = new BackgroundMusic("Music/Elevator Music.wav");
+	elevatorMusic = new BackgroundMusic("Music/Monsters Inc. Theme - Piano Arrangement-HQ.wav");
 }
 
 Game::~Game()
