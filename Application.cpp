@@ -6,6 +6,7 @@ Application::Application()
 {
 	shader = Shader(ShaderType::Specular);
 	gMike = new GameObject("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
+	//gMike = new GameObject("models/disney-infinity-mater/source/PC Computer - Disney Infinity - Mater/Mate/Mate.obj");
 	platform = new GameObject("models/Platform.obj");
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
