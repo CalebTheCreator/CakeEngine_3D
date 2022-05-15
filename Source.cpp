@@ -1,12 +1,17 @@
 #include "Game.h"
+#include <memory>
 
 int main(int argc, char* argv[])
 {
-	Game* MikesAdventure = new Game();
+	//creating smart pointer to run game
+	std::weak_ptr<Game> weakGame;
+
+	std::shared_ptr<Game> MikesAdventure = std::make_shared<Game>();
 
 	MikesAdventure->Run();
 
-	delete MikesAdventure;
-	
+	weakGame = MikesAdventure;
+	weakGame.lock()->Run();
+
 	return 0;
 }

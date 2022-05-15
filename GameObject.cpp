@@ -39,7 +39,7 @@ void GameObject::Tick(float DeltaTime, float upLimit)
 		Position.y -= upVelocity * DeltaTime;
 		upVelocity = 0.0f;
 	}
-	std::cout << upVelocity << std::endl;
+	//std::cout << upVelocity << std::endl;
 	//Position.x += DeltaTime;
 }
 
