@@ -37,5 +37,5 @@ private:
 	InputManager* mInputManager;
 	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
 	glm::vec3 initialMikePosition = glm::vec3(0, -1, -10);
-	glm::vec3 initialCubePosition = glm::vec3(5, -5, -10);
+	glm::vec3 initialCubePosition = glm::vec3(3, -1, -15);
 };

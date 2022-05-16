@@ -9,7 +9,7 @@ Application::Application()
 	shader = Shader(ShaderType::Specular);
 	gMike = new GameObject("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
 	platform = new GameObject("models/Platform.obj");
-	collisionCube = new GameObject("models/cube.obj");
+	collisionCube = new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj");
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
 	angle = 0;
@@ -49,10 +49,23 @@ void Application::Tick(float DeltaTime)
 	}
 
 	collisionCube->Tick(DeltaTime, 3.0f);
+	collisionCube->MoveLeft(DeltaTime);
+	if (collisionCube->GetPosition().x == -5)
+	{
+		collisionCube->MoveRight(DeltaTime);
+		if (collisionCube->GetPosition().x == 5)
+		{
+			collisionCube->MoveLeft(DeltaTime);
+		}
+	}
 
 	gMike->Tick(DeltaTime, -1.5f);
 
 	if (Cleb::IsColliding(gMike, collisionCube))
+	{
+		std::cout << "Collision is taking place bro" << std::endl;
+	}
+	if (Cleb::IsColliding(collisionCube, gMike))
 	{
 		std::cout << "Collision is taking place bro" << std::endl;
 	}
