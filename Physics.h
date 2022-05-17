@@ -7,4 +7,6 @@
 namespace Cleb
 {
 	bool IsColliding(GameObject* one, GameObject* two);
+
+	void CollisionResponse(GameObject* obj, const char* brokenModelSrc);
 }

@@ -22,15 +22,13 @@ struct Application
 
 	void Draw();
 
-	void SpawnObstacles();
-
 private:
 	Window window;
 	Shader shader;
 	GameObject* gMike;
 	GameObject* platform;
-	GameObject* collisionCube;
-	//std::vector<GameObject*> obstacles;
+	//GameObject* collisionCube;
+	std::vector<GameObject*> obstacles;
 	GLint projectionLoc;
 	GLint modelLoc;
 	float angle;
@@ -40,5 +38,4 @@ private:
 	InputManager* mInputManager;
 	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
 	glm::vec3 initialMikePosition = glm::vec3(0, -1, -10);
-	glm::vec3 initialCubePosition = glm::vec3(3, -2,-10);
 };

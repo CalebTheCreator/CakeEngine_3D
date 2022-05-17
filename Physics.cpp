@@ -16,4 +16,9 @@ namespace Cleb
 			return false;
 		}
 	}
+
+	void CollisionResponse(GameObject* obj, const char* brokenModelSrc)
+	{
+		obj->SetModelSrc(brokenModelSrc);
+	}
 }

@@ -16,7 +16,7 @@ public:
 	GameObject();
 	GameObject(const char* modelSrc);
 	~GameObject();
-	void Tick(float DeltaTime, float upLimit);
+	virtual void Tick(float DeltaTime, float upLimit);
 	void Draw(Shader& _shader);
 	void SetPosition(glm::vec3 p) { Position = p; }
 	glm::vec3 GetPosition() { return Position; }

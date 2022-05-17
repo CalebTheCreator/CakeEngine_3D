@@ -23,6 +23,7 @@
     <ClCompile Include="BackgroundMusic.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="controls.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Physics.h" />

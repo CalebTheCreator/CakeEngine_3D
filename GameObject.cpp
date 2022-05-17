@@ -8,7 +8,7 @@
 
 GameObject::GameObject()
 {
-	abort();
+	
 }
 
 GameObject::GameObject(const char* modelSrc) //:
@@ -16,12 +16,13 @@ GameObject::GameObject(const char* modelSrc) //:
 {
 	model = new Model(modelSrc);
 	upVelocity = 0.0f;
-
+	std::cout << "GameObject constructed with " << modelSrc << std::endl;
+	std::cout << "position is " << "\nx: " << Position.x << "\ny: " << Position.y << "\nz: " << Position.z << std::endl;
 }
 
 GameObject::~GameObject()
 {
-	
+	delete model;
 }
 
 void GameObject::Tick(float DeltaTime, float upLimit)
@@ -69,12 +70,12 @@ void GameObject::MoveRight(float DeltaTime)
 
 void GameObject::MoveForward(float DeltaTime)
 {
-	Position.z += DeltaTime;
+	Position.z += 2.0f * DeltaTime;
 }
 
 void GameObject::MoveBack(float DeltaTime)
 {
-	Position.z -= DeltaTime;
+	Position.z -= 2.0f * DeltaTime;
 }
 
 

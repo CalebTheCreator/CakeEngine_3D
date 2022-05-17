@@ -19,14 +19,9 @@ void Game::Run()
 
 	while (quit == false)
 	{
-		
-		/**NOW = SDL_GetPerformanceCounter();
-		DeltaTime = (double)((NOW - LAST) * 1000 / double(SDL_GetPerformanceFrequency()));
-		LAST = NOW;*/
 		NOW = SDL_GetTicks();
 		DeltaTime = (double)(NOW - LAST) / 1000.0f;
 		LAST = NOW;
-		//std::cout << DeltaTime << std::endl;
 		SDL_Event evt;
 		while (SDL_PollEvent(&evt))
 		{
