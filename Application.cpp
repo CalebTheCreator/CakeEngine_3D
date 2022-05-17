@@ -9,7 +9,7 @@ Application::Application()
 	shader = Shader(ShaderType::Specular);
 	gMike = new GameObject("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
 	platform = new GameObject("models/Platform.obj");
-	collisionCube = new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj");
+	//collisionCube = new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj");
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
 	angle = 0;
@@ -19,14 +19,20 @@ Application::Application()
 	mInputManager = new InputManager();
 	platform->SetPosition(initialFloorPosition);
 	gMike->SetPosition(initialMikePosition);
-	collisionCube->SetPosition(initialCubePosition);
+	collisionCube->SetPosition(glm::vec3(initialCubePosition));
+	collisionCube->SetScale(glm::vec3(0.3, 0.3, 0.3));
+	SpawnObstacles();
 }
 
 Application::~Application()
 {
 	delete gMike;
 	delete platform;
-	delete collisionCube;
+	for (int i = 0; i < obstacles.size(); i++)
+	{
+		delete obstacles[i];
+	}
+	//delete collisionCube;
 	delete mInputManager;
 }
 
@@ -43,13 +49,23 @@ void Application::Tick(float DeltaTime)
 		gMike->MoveLeft(DeltaTime);
 	}
 
+	if (mInputManager->KeyIsDown(SDL_SCANCODE_S))
+	{
+		gMike->MoveForward(DeltaTime);
+	}
+
+	if (mInputManager->KeyIsDown(SDL_SCANCODE_W))
+	{
+		gMike->MoveBack(DeltaTime);
+	}
+
 	if (mInputManager->KeyIsDown(SDL_SCANCODE_D))
 	{
 		gMike->MoveRight(DeltaTime);
 	}
 
-	collisionCube->Tick(DeltaTime, 3.0f);
-	collisionCube->MoveLeft(DeltaTime);
+	//collisionCube->Tick(DeltaTime, 3.0f);
+	//collisionCube->MoveLeft(DeltaTime);
 	if (collisionCube->GetPosition().x == -5)
 	{
 		collisionCube->MoveRight(DeltaTime);
@@ -60,15 +76,14 @@ void Application::Tick(float DeltaTime)
 	}
 
 	gMike->Tick(DeltaTime, -1.5f);
-
+	collisionCube->MoveLeft(DeltaTime);
 	if (Cleb::IsColliding(gMike, collisionCube))
 	{
-		std::cout << "Collision is taking place bro" << std::endl;
+		std::cout << "Colliding" << std::endl;
+		delete collisionCube;
 	}
-	if (Cleb::IsColliding(collisionCube, gMike))
-	{
-		std::cout << "Collision is taking place bro" << std::endl;
-	}
+
+	
 }
 
 
@@ -76,9 +91,24 @@ void Application::Draw()
 {
 	shader.Prepare(projectionLoc, modelLoc, window, angle);
 	gMike->Draw(shader);
-	collisionCube->Draw(shader);
+	//collisionCube->Draw(shader);
+	for (auto a : obstacles)
+	{
+		a->Draw(shader);
+	}
 	platform->Draw(shader);
 
 	shader.Draw();
 	window.Swap();
+}
+
+void Application::SpawnObstacles()
+{
+	for (int i = 0; i < obstacles.size(); i++)
+	{
+		float randZ = rand() % -20 + 30;
+		obstacles[i]->SetPosition(glm::vec3(-1.0f, -2.0f, randZ));
+		obstacles[i]->SetScale(glm::vec3(0.3, 0.3, 0.3));
+	}
+
 }

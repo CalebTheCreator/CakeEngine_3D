@@ -47,7 +47,7 @@ void GameObject::Draw(Shader& _shader)
 {
 	glUseProgram(_shader.GetProgramId());
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgramId(), "u_Model"), 1, GL_FALSE, glm::value_ptr(
-		glm::translate(glm::mat4(1.0f), Position)));
+		glm::scale(glm::translate(glm::mat4(1.0f), Position), Scale)));
 
 	model->Draw();
 }
@@ -66,6 +66,18 @@ void GameObject::MoveRight(float DeltaTime)
 {
 	Position.x += DeltaTime;
 }
+
+void GameObject::MoveForward(float DeltaTime)
+{
+	Position.z += DeltaTime;
+}
+
+void GameObject::MoveBack(float DeltaTime)
+{
+	Position.z -= DeltaTime;
+}
+
+
 
 void GameObject::Jump(float jumpVelocity)
 {

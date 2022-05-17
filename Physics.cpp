@@ -1,19 +1,13 @@
 #include "Physics.h"
 #include "GameObject.h"
 
+#include <iostream>
 namespace Cleb 
 {
 	bool Cleb::IsColliding(GameObject* one, GameObject* two)
 	{
-		if(one->GetPosition().x == two->GetPosition().x && one->GetPosition().y == two->GetPosition().y)
-		{
-			return true;
-		}
-		else if (one->GetPosition().x == two->GetPosition().x && one->GetPosition().z == two->GetPosition().z)
-		{
-			return true;
-		}
-		else if (one->GetPosition().y == two->GetPosition().y && one->GetPosition().z == two->GetPosition().z)
+		float distance = glm::distance(one->GetPosition(), two->GetPosition());
+		if (distance < 2)
 		{
 			return true;
 		}
