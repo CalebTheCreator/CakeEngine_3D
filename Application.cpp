@@ -9,7 +9,7 @@ Application::Application()
 	shader = Shader(ShaderType::Specular);
 	gMike = new GameObject("models/mike-wazowski/source/Mike Wazowski/Mike.obj");
 	platform = new GameObject("models/Platform.obj");
-	//collisionCube = new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj");
+	collisionCube = new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj");
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
 	angle = 0;
@@ -21,18 +21,14 @@ Application::Application()
 	gMike->SetPosition(initialMikePosition);
 	collisionCube->SetPosition(glm::vec3(initialCubePosition));
 	collisionCube->SetScale(glm::vec3(0.3, 0.3, 0.3));
-	SpawnObstacles();
+	//SpawnObstacles();
 }
 
 Application::~Application()
 {
 	delete gMike;
+	delete collisionCube;
 	delete platform;
-	for (int i = 0; i < obstacles.size(); i++)
-	{
-		delete obstacles[i];
-	}
-	//delete collisionCube;
 	delete mInputManager;
 }
 
@@ -80,7 +76,6 @@ void Application::Tick(float DeltaTime)
 	if (Cleb::IsColliding(gMike, collisionCube))
 	{
 		std::cout << "Colliding" << std::endl;
-		delete collisionCube;
 	}
 
 	
@@ -91,11 +86,7 @@ void Application::Draw()
 {
 	shader.Prepare(projectionLoc, modelLoc, window, angle);
 	gMike->Draw(shader);
-	//collisionCube->Draw(shader);
-	for (auto a : obstacles)
-	{
-		a->Draw(shader);
-	}
+	collisionCube->Draw(shader);
 	platform->Draw(shader);
 
 	shader.Draw();
@@ -104,11 +95,11 @@ void Application::Draw()
 
 void Application::SpawnObstacles()
 {
-	for (int i = 0; i < obstacles.size(); i++)
+	/*for (int i = 0; i < obstacles.size(); i++)
 	{
 		float randZ = rand() % -20 + 30;
 		obstacles[i]->SetPosition(glm::vec3(-1.0f, -2.0f, randZ));
 		obstacles[i]->SetScale(glm::vec3(0.3, 0.3, 0.3));
-	}
+	}*/
 
 }
