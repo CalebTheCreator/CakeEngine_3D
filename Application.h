@@ -22,6 +22,8 @@ struct Application
 
 	void Draw();
 
+	float GetPlayerHealth() { return gMike->GetHealth(); }
+
 private:
 	Window window;
 	Shader shader;
@@ -31,10 +33,8 @@ private:
 	GLint projectionLoc;
 	GLint modelLoc;
 	float angle;
-	bool quit;
-	float xPos1;
-	float xPos2;
 	InputManager* mInputManager;
 	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
 	glm::vec3 initialMikePosition = glm::vec3(0, -1, -10);
+	float score = 0.0f;
 };

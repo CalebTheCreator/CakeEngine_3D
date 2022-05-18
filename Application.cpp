@@ -14,9 +14,6 @@ Application::Application()
 	projectionLoc = glGetUniformLocation(shader.GetProgramId(), "u_Projection");
 	modelLoc = glGetUniformLocation(shader.GetProgramId(), "u_Model");
 	angle = 0;
-	quit = false;
-	xPos1 = -2;
-	xPos2 = 2;
 	mInputManager = new InputManager();
 	platform->SetPosition(initialFloorPosition);
 	gMike->SetPosition(initialMikePosition);
@@ -105,16 +102,25 @@ void Application::Tick(float DeltaTime)
 		
 		obstacles[i]->Tick(DeltaTime, -3.0f);
 		obstacles[i]->MoveLeft(DeltaTime);
+
+		if (!Cleb::IsColliding(gMike, obstacles[i]))
+		{
+			SDL_Delay(3);
+			score += 0.1f;
+		}
 		if (Cleb::IsColliding(gMike, obstacles[i]))
 		{
 			std::cout << "Collision taking place sir" << std::endl;
-			obstacles[i]->SetModelSrc("models/obj-Burning_Cube_by_3DHaupt\Burning_Cube_by_3DHaupt-(Wavefront OBJ).obj");
+			//obstacles[i]->SetModelSrc("models/obj-Burning_Cube_by_3DHaupt\Burning_Cube_by_3DHaupt-(Wavefront OBJ).obj");
+			gMike->DecrementHealth();
 		}
 		if (obstacles[i]->GetPosition().x <= -5 && !Cleb::IsColliding(obstacles[i], gMike))
 		{
 			obstacles[i]->SetX(5);
 		}
 	}
+
+	std::cout << "Score: " << score << std::endl;
 }
 
 

@@ -33,5 +33,9 @@ void Game::Run()
 		elevatorMusic->Play();
 		RunningGame->Tick(DeltaTime);
 		RunningGame->Draw();
+		if (RunningGame->GetPlayerHealth() <= 0.0f)
+		{
+			quit = true;
+		}
 	}
 }

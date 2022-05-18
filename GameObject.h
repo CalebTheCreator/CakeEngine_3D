@@ -35,7 +35,9 @@ public:
 	void MoveBack(float DeltaTime);
 	//void Jump(float jumpVelocity, float DeltaTime, glm::vec3& initialPosition, int restraint);
 	void Jump(float jumpVelocity);
-
+	void IncrementHealth() { health++; }
+	void DecrementHealth() { health--; }
+	float GetHealth() { return health; }
 
 private:
 	Model* model;
@@ -43,5 +45,6 @@ private:
 	glm::vec3 Scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	float upVelocity;
 	const char* mSrc;
+	float health;
 };
 
