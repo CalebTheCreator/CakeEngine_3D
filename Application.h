@@ -27,7 +27,6 @@ private:
 	Shader shader;
 	GameObject* gMike;
 	GameObject* platform;
-	//GameObject* collisionCube;
 	std::vector<GameObject*> obstacles;
 	GLint projectionLoc;
 	GLint modelLoc;

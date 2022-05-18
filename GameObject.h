@@ -42,5 +42,6 @@ private:
 	glm::vec3 Position;
 	glm::vec3 Scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	float upVelocity;
+	const char* mSrc;
 };
 

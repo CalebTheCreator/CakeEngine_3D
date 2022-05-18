@@ -16,8 +16,8 @@ GameObject::GameObject(const char* modelSrc) //:
 {
 	model = new Model(modelSrc);
 	upVelocity = 0.0f;
-	std::cout << "GameObject constructed with " << modelSrc << std::endl;
-	std::cout << "position is " << "\nx: " << Position.x << "\ny: " << Position.y << "\nz: " << Position.z << std::endl;
+	mSrc = modelSrc;
+	
 }
 
 GameObject::~GameObject()
@@ -40,8 +40,6 @@ void GameObject::Tick(float DeltaTime, float upLimit)
 		Position.y -= upVelocity * DeltaTime;
 		upVelocity = 0.0f;
 	}
-	//std::cout << upVelocity << std::endl;
-	//Position.x += DeltaTime;
 }
 
 void GameObject::Draw(Shader& _shader)

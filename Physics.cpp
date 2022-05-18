@@ -7,7 +7,7 @@ namespace Cleb
 	bool Cleb::IsColliding(GameObject* one, GameObject* two)
 	{
 		float distance = glm::distance(one->GetPosition(), two->GetPosition());
-		if (distance < 2)
+		if (distance < 1)
 		{
 			return true;
 		}

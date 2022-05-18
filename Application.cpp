@@ -24,9 +24,35 @@ Application::Application()
 	for (int i = 0; i < 5; i++)
 	{
 		obstacles.push_back(new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj"));
-		obstacles[i]->SetPosition(glm::vec3(3.0f, -5.0f, rand() % -6 -10));
+		obstacles[i]->SetPosition(glm::vec3(3, -1, -10));
 		obstacles[i]->SetScale(glm::vec3(0.3f, 0.3f, 0.3f));
-		
+
+		switch (i)
+		{
+		case 0:
+			obstacles[0]->SetZ(-12);
+			break;
+
+		case 1:
+			obstacles[1]->SetZ(-14);
+			break;
+
+		case 2:
+			obstacles[2]->SetZ(-16);
+			break;
+
+		case 3:
+			obstacles[3]->SetZ(-18);
+			break;
+
+		case 4:
+			obstacles[4]->SetZ(-20);
+			break;
+
+
+		default:
+			break;
+		}
 	}
 
 }
@@ -45,10 +71,11 @@ Application::~Application()
 
 void Application::Tick(float DeltaTime)
 {
+
 	mInputManager->Update();
 	if (mInputManager->KeyIsDown(SDL_SCANCODE_SPACE))
 	{
-		gMike->Jump(5);
+		gMike->Jump(3);
 	}
 
 	if (mInputManager->KeyIsDown(SDL_SCANCODE_A))
@@ -75,16 +102,19 @@ void Application::Tick(float DeltaTime)
 
 	for (int i = 0; i < obstacles.size(); i++)
 	{
-		obstacles[i]->Tick(DeltaTime, 3.0f);
+		
+		obstacles[i]->Tick(DeltaTime, -3.0f);
 		obstacles[i]->MoveLeft(DeltaTime);
 		if (Cleb::IsColliding(gMike, obstacles[i]))
 		{
 			std::cout << "Collision taking place sir" << std::endl;
-			//Cleb::CollisionResponse(obstacles[i], "models/obj-Burning_Cube_by_3DHaupt/Burning_Cube_by_3DHaupt-(Wavefront OBJ).obj");
+			obstacles[i]->SetModelSrc("models/obj-Burning_Cube_by_3DHaupt\Burning_Cube_by_3DHaupt-(Wavefront OBJ).obj");
+		}
+		if (obstacles[i]->GetPosition().x <= -5 && !Cleb::IsColliding(obstacles[i], gMike))
+		{
+			obstacles[i]->SetX(5);
 		}
 	}
-
-	
 }
 
 
@@ -92,7 +122,6 @@ void Application::Draw()
 {
 	shader.Prepare(projectionLoc, modelLoc, window, angle);
 	gMike->Draw(shader);
-	//collisionCube->Draw(shader);
 
 	for (int i = 0; i < obstacles.size(); i++)
 	{
@@ -104,3 +133,4 @@ void Application::Draw()
 	shader.Draw();
 	window.Swap();
 }
+
