@@ -17,7 +17,7 @@ GameObject::GameObject(const char* modelSrc) //:
 	model = new Model(modelSrc);
 	upVelocity = 0.0f;
 	mSrc = modelSrc;
-	health = 100.0f;
+	health = 1000.0f;
 }
 
 GameObject::~GameObject()

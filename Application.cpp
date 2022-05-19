@@ -21,7 +21,8 @@ Application::Application()
 	for (int i = 0; i < 5; i++)
 	{
 		obstacles.push_back(new GameObject("models/minecraft-grass-block/source/Minecraft_Grass_Block_OBJ/Grass_Block.obj"));
-		obstacles[i]->SetPosition(glm::vec3(3, -1, -10));
+		int randX = rand() % 3 + 3;
+		obstacles[i]->SetPosition(glm::vec3(randX, -3, -10));
 		obstacles[i]->SetScale(glm::vec3(0.3f, 0.3f, 0.3f));
 
 		switch (i)
@@ -95,12 +96,12 @@ void Application::Tick(float DeltaTime)
 		gMike->MoveRight(DeltaTime);
 	}
 
-	gMike->Tick(DeltaTime, -1.5f);
+	gMike->Tick(DeltaTime, -3.0f);
 
 	for (int i = 0; i < obstacles.size(); i++)
 	{
 		
-		obstacles[i]->Tick(DeltaTime, -3.0f);
+		//obstacles[i]->Tick(DeltaTime, -1.0f);
 		obstacles[i]->MoveLeft(DeltaTime);
 
 		if (!Cleb::IsColliding(gMike, obstacles[i]))
@@ -111,16 +112,17 @@ void Application::Tick(float DeltaTime)
 		if (Cleb::IsColliding(gMike, obstacles[i]))
 		{
 			std::cout << "Collision taking place sir" << std::endl;
-			//obstacles[i]->SetModelSrc("models/obj-Burning_Cube_by_3DHaupt\Burning_Cube_by_3DHaupt-(Wavefront OBJ).obj");
 			gMike->DecrementHealth();
+			Cleb::CollisionResponse(gMike, obstacles[i]);
 		}
-		if (obstacles[i]->GetPosition().x <= -5 && !Cleb::IsColliding(obstacles[i], gMike))
+		if (obstacles[i]->GetPosition().x <= -6 && !Cleb::IsColliding(obstacles[i], gMike))
 		{
-			obstacles[i]->SetX(5);
+			obstacles[i]->SetX(8);
 		}
 	}
 
 	std::cout << "Score: " << score << std::endl;
+	
 }
 
 
@@ -128,6 +130,7 @@ void Application::Draw()
 {
 	shader.Prepare(projectionLoc, modelLoc, window, angle);
 	gMike->Draw(shader);
+
 
 	for (int i = 0; i < obstacles.size(); i++)
 	{

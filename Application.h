@@ -23,6 +23,7 @@ struct Application
 	void Draw();
 
 	float GetPlayerHealth() { return gMike->GetHealth(); }
+	float GetScore() { return score; }
 
 private:
 	Window window;
@@ -35,6 +36,6 @@ private:
 	float angle;
 	InputManager* mInputManager;
 	glm::vec3 initialFloorPosition = glm::vec3(0, -10, -70);
-	glm::vec3 initialMikePosition = glm::vec3(0, -1, -10);
+	glm::vec3 initialMikePosition = glm::vec3(0, -3, -10);
 	float score = 0.0f;
 };

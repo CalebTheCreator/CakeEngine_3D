@@ -37,5 +37,10 @@ void Game::Run()
 		{
 			quit = true;
 		}
+		if (RunningGame->GetScore() >= 1000.0f)
+		{
+			quit = true;
+			std::cout << "You Won! " << std::endl;
+		}
 	}
 }

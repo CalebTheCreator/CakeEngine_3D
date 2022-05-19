@@ -7,7 +7,7 @@ namespace Cleb
 	bool Cleb::IsColliding(GameObject* one, GameObject* two)
 	{
 		float distance = glm::distance(one->GetPosition(), two->GetPosition());
-		if (distance < 2)
+		if (distance < 0.5)
 		{
 			return true;
 		}
@@ -17,8 +17,8 @@ namespace Cleb
 		}
 	}
 
-	void CollisionResponse(GameObject* obj, const char* brokenModelSrc)
+	void CollisionResponse(GameObject* player, GameObject* obstacle)
 	{
-		obj->SetModelSrc(brokenModelSrc);
+		player->SetX(obstacle->GetPosition().x - 0.5);
 	}
 }

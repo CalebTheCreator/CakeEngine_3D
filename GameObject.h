@@ -46,5 +46,6 @@ private:
 	float upVelocity;
 	const char* mSrc;
 	float health;
+	bool isObtacle;
 };
 

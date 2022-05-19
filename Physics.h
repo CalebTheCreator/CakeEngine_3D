@@ -8,5 +8,5 @@ namespace Cleb
 {
 	bool IsColliding(GameObject* one, GameObject* two);
 
-	void CollisionResponse(GameObject* obj, const char* brokenModelSrc);
+	void CollisionResponse(GameObject* player, GameObject* obstacles);
 }
