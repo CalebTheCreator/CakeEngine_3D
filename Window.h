@@ -13,6 +13,7 @@ struct Window
 	void Swap();
 	int GetWindowHeight();
 	int GetWindowWidth();
+	SDL_Window* GetWindow() { return window; }
 
 private:
 	SDL_Window* window;

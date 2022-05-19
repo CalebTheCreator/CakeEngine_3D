@@ -48,7 +48,7 @@
     <ClCompile Include="Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +89,7 @@
     <ClInclude Include="Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
